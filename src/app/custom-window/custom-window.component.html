@@ -1,0 +1,42 @@
+<div *ngIf="maskVisible" [class]="maskStyleClass" [ngClass]="{'p-dialog-mask': true, 'p-component-overlay': this.modal, 'p-dialog-mask-scrollblocker': this.modal || this.blockScroll,
+                'p-dialog-left': position === 'left',
+                'p-dialog-right': position === 'right',
+                'p-dialog-top': position === 'top',
+                'p-dialog-top-left': position === 'topleft' || position === 'top-left',
+                'p-dialog-top-right': position === 'topright' || position === 'top-right',
+                'p-dialog-bottom': position === 'bottom',
+                'p-dialog-bottom-left': position === 'bottomleft' || position === 'bottom-left',
+                'p-dialog-bottom-right': position === 'bottomright' || position === 'bottom-right'}" (click)="moveOnTop()">
+    <div #container [ngClass]="{'p-dialog p-component':true, 'p-dialog-rtl':rtl,'p-dialog-draggable':draggable,'p-dialog-resizable':resizable, 'p-dialog-maximized': maximized, 'minimizeView': isMinimized}" [ngStyle]="style" [class]="styleClass" *ngIf="visible" pFocusTrap [@animation]="{value: 'visible', params: {transform: transformOptions, transition: transitionOptions}}" (@animation.start)="onAnimationStart($event)" (@animation.done)="onAnimationEnd($event)" role="dialog" [attr.aria-labelledby]="id + '-label'">
+        <div #titlebar class="p-dialog-header" (mousedown)="initDrag($event)" *ngIf="showHeader" [ngStyle]="HeaderStyle" [class]="HeaderStyleClass">
+            <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="header">{{header}}</span>
+            <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="headerFacet">
+                <ng-content select="p-header"></ng-content>
+            </span>
+            <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+            <div class="p-dialog-header-icons">
+                <button (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
+                    <span class="pi pi-minus"></span>
+                </button>
+                <button *ngIf="maximizable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-maximize p-link':true}" (click)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                    <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
+                </button>
+                <button *ngIf="closable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-close p-link':true}" (click)="close($event);isMinimized = false" (keydown.enter)="close($event)" tabindex="-1" pRipple>
+                    <span class="p-dialog-header-close-icon" [ngClass]="closeIcon"></span>
+                </button>
+            </div>
+        </div>
+        <div [hidden]="isMinimized && !maximized" #content [ngClass]="'p-dialog-content'" [ngStyle]="contentStyle" [class]="contentStyleClass">
+            <ng-content></ng-content>
+            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </div>
+        <div [hidden]="isMinimized && !maximized" #footer class="p-dialog-footer" *ngIf="footerFacet || footerTemplate">
+            <ng-content select="p-footer"></ng-content>
+            <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+        </div>
+        <div *ngIf="resizable || vertical" style="z-index: 90;" class="p-resizable-handle-vertical-top" (mousedown)="initResize($event, true,false, false, false)"></div>
+        <div *ngIf="resizable || vertical" style="z-index: 90;" class="p-resizable-handle-vertical-bottom" (mousedown)="initResize($event, false, true,false, false)"></div>
+        <div *ngIf="resizable || horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-left" (mousedown)="initResize($event, false, false, false, true)"></div>
+        <div *ngIf="resizable || horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-right" (mousedown)="initResize($event, false, false, true, false)"></div>
+    </div>
+</div>
