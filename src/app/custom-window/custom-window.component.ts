@@ -143,6 +143,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   @Input() minimizeIcon: string = 'pi pi-window-minimize';
 
   @Input() maximizeIcon: string = 'pi pi-window-maximize';
+  @Input() config: any;
 
   @ContentChild(Header)
   headerFacet!: QueryList<Header>;
@@ -175,6 +176,8 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
 
   @Output() onMaximize: EventEmitter<any> = new EventEmitter();
+
+  @Output() onMinimize: EventEmitter<any> = new EventEmitter();
 
   headerTemplate!: TemplateRef<any>;
 
@@ -795,27 +798,32 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   }
 
   minimizeWindow(event: any) {
-    let viewport = DomHandler.getViewport();
-    const targetEle = event.currentTarget.closest('.p-dialog-draggable');
-    if (targetEle) {
-      if (targetEle.classList.contains('minimizeView') && !this.maximized) {
-        targetEle.style.width = '50vw';
-        targetEle.style.left = (viewport.width / 4) + 'px';
-        targetEle.style.top = ((viewport.height / 2) - (targetEle.clientHeight / 2)) + 'px';
-      } else {
-        targetEle.style.position = 'fixed';
-        targetEle.style.width = '300px';
-        targetEle.style.left = (viewport.width - 300) + 'px';
-        targetEle.style.top = (viewport.height - 80) + 'px';
-      }
-    }
-    if (this.maximized && this.isMinimized) {
+    if (this.config?.showTaskBar) {
 
     } else {
-      this.isMinimized = !this.isMinimized;
+      let viewport = DomHandler.getViewport();
+      const targetEle = event.currentTarget.closest('.p-dialog-draggable');
+      if (targetEle) {
+        if (targetEle.classList.contains('minimizeView') && !this.maximized) {
+          targetEle.style.width = '50vw';
+          targetEle.style.left = (viewport.width / 4) + 'px';
+          targetEle.style.top = ((viewport.height / 2) - (targetEle.clientHeight / 2)) + 'px';
+        } else {
+          targetEle.style.position = 'fixed';
+          targetEle.style.width = '300px';
+          targetEle.style.left = (viewport.width - 300) + 'px';
+          targetEle.style.top = (viewport.height - 80) + 'px';
+        }
+      }
+      if (this.maximized && this.isMinimized) {
+
+      } else {
+        this.isMinimized = !this.isMinimized;
+      }
+      if (this.maximized) {
+        this.maximize();
+      }
     }
-    if (this.maximized) {
-      this.maximize();
-    }
+    this.onMinimize.emit({ 'minimized': this.isMinimized });
   }
 }

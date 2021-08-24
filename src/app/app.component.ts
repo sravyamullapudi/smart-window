@@ -19,6 +19,9 @@ export class AppComponent {
 
   dialogsList: DialogsData[] = [];
   dialogCount = 0;
+  config = {
+    showTaskBar: true
+  }
 
   showDialog() {
     this.dialogCount++;
@@ -47,5 +50,17 @@ export class AppComponent {
   visibleToggleed(index: number) {
     this.dialogsList[index].isHide = !this.dialogsList[index].isHide;
   }
+
+  onMaximize(evnt: any, index: number) {
+    console.log(evnt);
+  }
+
+  onMinimize(evnt: any, index: number) {
+    console.log(evnt);
+    if (this.config.showTaskBar) {
+      this.visibleToggleed(index)
+    }
+  }
+
 
 }
