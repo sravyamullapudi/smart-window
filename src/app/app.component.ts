@@ -19,6 +19,11 @@ export class AppComponent {
   config = {
     showTaskBar: false
   }
+  resizeOptions = {
+    horizontal: true,
+    corners: true,
+    both: false
+  }
 
   showDialog() {
     this.dialogCount++;

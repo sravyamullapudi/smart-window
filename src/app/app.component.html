@@ -5,7 +5,7 @@
 </div>
 <div class="container">
   <ng-container *ngFor="let dialog of dialogsList;let i = index">
-    <custom-dialog [config]="config" [hidden]="dialog.isHide" [header]="dialog.header" [maximizable]="true" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="true" (visibleChange)="visibleChanged($event, i)" [HeaderStyle]="{'background-color': '#d0e5f1'}" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)">
+    <custom-window [config]="config" [hidden]="dialog.isHide" [header]="dialog.header" [maximizable]="true" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" [HeaderStyle]="{'background-color': '#d0e5f1'}" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna
         aliqua.
@@ -17,7 +17,7 @@
         <p-button icon="pi pi-check" (click)="closeDialog(dialog)" label="Yes" styleClass="p-button-text"></p-button>
         <p-button icon="pi pi-times" (click)="closeDialog(dialog)" label="No"></p-button>
       </ng-template>
-    </custom-dialog>
+    </custom-window>
   </ng-container>
 </div>
 

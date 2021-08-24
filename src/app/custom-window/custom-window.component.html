@@ -7,7 +7,7 @@
                 'p-dialog-bottom': position === 'bottom',
                 'p-dialog-bottom-left': position === 'bottomleft' || position === 'bottom-left',
                 'p-dialog-bottom-right': position === 'bottomright' || position === 'bottom-right'}" (click)="moveOnTop()">
-    <div #container [ngClass]="{'p-dialog p-component':true, 'p-dialog-rtl':rtl,'p-dialog-draggable':draggable,'p-dialog-resizable':resizable, 'p-dialog-maximized': maximized, 'minimizeView': isMinimized}" [ngStyle]="style" [class]="styleClass" *ngIf="visible" pFocusTrap [@animation]="{value: 'visible', params: {transform: transformOptions, transition: transitionOptions}}" (@animation.start)="onAnimationStart($event)" (@animation.done)="onAnimationEnd($event)" role="dialog" [attr.aria-labelledby]="id + '-label'">
+    <div #container [ngClass]="{'p-dialog p-component':true, 'p-dialog-rtl':rtl,'p-dialog-draggable':draggable,'p-dialog-maximized': maximized, 'minimizeView': isMinimized}" [ngStyle]="style" [class]="styleClass" *ngIf="visible" pFocusTrap [@animation]="{value: 'visible', params: {transform: transformOptions, transition: transitionOptions}}" (@animation.start)="onAnimationStart($event)" (@animation.done)="onAnimationEnd($event)" role="dialog" [attr.aria-labelledby]="id + '-label'">
         <div #titlebar class="p-dialog-header" (mousedown)="initDrag($event)" *ngIf="showHeader" [ngStyle]="HeaderStyle" [class]="HeaderStyleClass">
             <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="header">{{header}}</span>
             <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="headerFacet">
@@ -34,9 +34,13 @@
             <ng-content select="p-footer"></ng-content>
             <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
         </div>
-        <div *ngIf="resizable || vertical" style="z-index: 90;" class="p-resizable-handle-vertical-top" (mousedown)="initResize($event, true,false, false, false)"></div>
-        <div *ngIf="resizable || vertical" style="z-index: 90;" class="p-resizable-handle-vertical-bottom" (mousedown)="initResize($event, false, true,false, false)"></div>
-        <div *ngIf="resizable || horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-left" (mousedown)="initResize($event, false, false, false, true)"></div>
-        <div *ngIf="resizable || horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-right" (mousedown)="initResize($event, false, false, true, false)"></div>
+        <div *ngIf="resizable.both || resizable.vertical" style="z-index: 90;" class="p-resizable-handle-vertical-top" (mousedown)="initResize($event, true,false, false, false)"></div>
+        <div *ngIf="resizable.both || resizable.vertical" style="z-index: 90;" class="p-resizable-handle-vertical-bottom" (mousedown)="initResize($event, false, true,false, false)"></div>
+        <div *ngIf="resizable.both || resizable.horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-right" (mousedown)="initResize($event, false, false, true, false)"></div>
+        <div *ngIf="resizable.both || resizable.horizontal" style="z-index: 90;" class="p-resizable-handle-vertical-left" (mousedown)="initResize($event, false, false, false, true)"></div>
+        <div *ngIf="resizable.corners" class="p-resizable-handle-bottom-right" style="z-index: 90;" (mousedown)="initResize($event, false, true, true, false)"></div>
+        <div *ngIf="resizable.corners" class="p-resizable-handle-bottom-left" style="z-index: 90;" (mousedown)="initResize($event, false, true, false, true)"></div>
+        <div *ngIf="resizable.corners" class="p-resizable-handle-top-left" style="z-index: 90;" (mousedown)="initResize($event, true, false, false, true)"></div>
+        <div *ngIf="resizable.corners" class="p-resizable-handle-top-right" style="z-index: 90;" (mousedown)="initResize($event, true, false, true, false)"></div>
     </div>
 </div>

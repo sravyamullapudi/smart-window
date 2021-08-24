@@ -20,7 +20,7 @@ const hideAnimation = animation([
 ]);
 
 @Component({
-  selector: 'custom-dialog',
+  selector: 'custom-window',
   templateUrl: './custom-window.component.html',
   animations: [
     trigger('animation', [
@@ -43,11 +43,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Input() draggable: boolean = true;
 
-  @Input() resizable: boolean = true;
-
-  @Input() horizontal: boolean = false;
-
-  @Input() vertical: boolean = false;
+  @Input() resizable: any = { horizontal: false, vertical: false, both: true, corners: true };
 
   @Input() get positionLeft(): number {
     return 0;
@@ -74,6 +70,9 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Input()
   HeaderStyleClass!: string;
+
+  @Input()
+  haederButtons!: string;
 
   @Input()
   modal!: boolean;
@@ -530,7 +529,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   }
 
   initResize(event: MouseEvent, top: boolean, bottom: boolean, right: boolean, left: boolean) {
-    if (this.resizable || this.horizontal || this.vertical) {
+    if (this.resizable.both || this.resizable.horizontal || this.resizable.vertical || this.resizable.corners) {
       this.resizing = true;
       this.lastPageX = event.pageX;
       this.lastPageY = event.pageY;
@@ -556,7 +555,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
       let minHeight = this.container.style.minHeight;
       let offset = DomHandler.getOffset(this.container);
       let viewport = DomHandler.getViewport();
-      let hasBeenDragged = !parseInt(this.container.style.top) || !parseInt(this.container.style.left) || !parseInt(this.container.style.bottom) || !parseInt(this.container.style.right);
+      let hasBeenDragged = !parseInt(this.container.style.top) || !parseInt(this.container.style.left);
 
       if (hasBeenDragged) {
         newWidth += deltaX;
@@ -583,7 +582,11 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
       if (this.left) {
         if ((!minWidth || newWidth > parseInt(minWidth)) && (offset.left + newWidth) < viewport.width) {
-          this._style.width = containerWidth - deltaX + 'px';
+          if (hasBeenDragged) {
+            this._style.width = containerWidth - deltaX + 'px';
+          } else {
+            this._style.width = containerWidth + deltaX + 'px';
+          }
           this.container.style.width = this._style.width;
         }
       }
@@ -599,10 +602,10 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
         }
       }
 
-      if (newWidth < 300) {
-        this._style.width = 350 + 'px';
-        this.container.style.width = this._style.width;
-      }
+      // if (newWidth < 300) {
+      //   this._style.width = 350 + 'px';
+      //   this.container.style.width = this._style.width;
+      // }
 
       this.lastPageX = event.pageX;
       this.lastPageY = event.pageY;
@@ -623,7 +626,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
       this.bindDocumentDragEndListener();
     }
 
-    if (this.resizable || this.horizontal || this.vertical) {
+    if (this.resizable.both || this.resizable.horizontal || this.resizable.vertical || this.resizable.corners) {
       this.bindDocumentResizeListeners();
     }
 
@@ -798,7 +801,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   }
 
   minimizeWindow(event: any) {
-    if (this.config?.showTaskBar) {
+    if (this.config ?.showTaskBar) {
 
     } else {
       let viewport = DomHandler.getViewport();
