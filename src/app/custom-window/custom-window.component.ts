@@ -816,12 +816,13 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
         }
       }
       if (this.maximized && this.isMinimized) {
+
       } else {
         this.isMinimized = !this.isMinimized;
       }
-    }
-    if (this.maximized) {
-      this.maximize();
+      if (this.maximized) {
+        this.maximize();
+      }
     }
     this.onMinimize.emit({ 'minimized': this.isMinimized });
   }

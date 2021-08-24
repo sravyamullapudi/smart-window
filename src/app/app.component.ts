@@ -17,7 +17,7 @@ export class AppComponent {
   dialogsList: DialogsData[] = [];
   dialogCount = 0;
   config = {
-    showTaskBar: true
+    showTaskBar: false
   }
 
   showDialog() {
