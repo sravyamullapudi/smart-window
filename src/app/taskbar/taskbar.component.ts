@@ -29,12 +29,14 @@ export class TaskbarComponent implements OnInit, OnChanges {
 
   checkMoreButton() {
     this.cd.detectChanges();
-    const taskbarContainer = document.querySelector('.taskbar-container ul');
-    if (taskbarContainer && taskbarContainer.clientWidth > (window.innerWidth - 100)) {
-      this.isShowMore = true;
-    } else {
-      this.isShowMore = false;
-    }
+    setTimeout(() => {
+      const taskbarContainer = document.querySelector('.taskbar-container ul');
+      if (taskbarContainer && taskbarContainer.parentElement && taskbarContainer.clientWidth > taskbarContainer.parentElement.clientWidth) {
+        this.isShowMore = true;
+      } else {
+        this.isShowMore = false;
+      }
+    }, 1);
   }
 
   toggle(item: any, index: number) {

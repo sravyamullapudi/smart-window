@@ -13,9 +13,6 @@ interface DialogsData {
 })
 export class AppComponent {
   title = 'angular-window';
-  displayBasic: boolean = false;
-  displayBasic1: boolean = false;
-  displayBasic2: boolean = false;
 
   dialogsList: DialogsData[] = [];
   dialogCount = 0;
@@ -34,13 +31,6 @@ export class AppComponent {
 
   closeDialog(data: any) {
     console.log(data);
-  }
-
-  showDialog1() {
-    this.displayBasic1 = true;
-  }
-  showDialog2() {
-    this.displayBasic2 = true;
   }
 
   visibleChanged(val: boolean, index: number) {
