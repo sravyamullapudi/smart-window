@@ -596,6 +596,11 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
         }
       }
 
+      if (newWidth < 300) {
+        this._style.width = 350 + 'px';
+        this.container.style.width = this._style.width;
+      }
+
       this.lastPageX = event.pageX;
       this.lastPageY = event.pageY;
     }
