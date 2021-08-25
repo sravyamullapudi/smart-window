@@ -40,8 +40,6 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Input() headerConfig!: any;
 
-  @Input()
-  header!: string;
 
   @Input() draggable: boolean = true;
 
@@ -67,13 +65,6 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Input()
   contentStyleClass!: string;
-
-  @Input() HeaderStyle: any;
-
-  @Input() headerIcon!: string;
-
-  @Input()
-  HeaderStyleClass!: string;
 
   @Input()
   toolsConfig!: Array<any>;

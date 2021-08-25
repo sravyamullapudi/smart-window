@@ -35,10 +35,6 @@ export class AppComponent {
     alignment: 'left'
   }];
 
-  headerConfig = {
-
-  }
-
   showDialog() {
     this.dialogCount++;
     this.dialogsList.push({
