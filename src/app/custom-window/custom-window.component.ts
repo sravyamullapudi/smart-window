@@ -38,6 +38,8 @@ const hideAnimation = animation([
 })
 export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestroy {
 
+  @Input() headerConfig!: any;
+
   @Input()
   header!: string;
 
@@ -68,11 +70,13 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Input() HeaderStyle: any;
 
+  @Input() headerIcon!: string;
+
   @Input()
   HeaderStyleClass!: string;
 
   @Input()
-  haederButtons!: string;
+  toolsConfig!: Array<any>;
 
   @Input()
   modal!: boolean;
@@ -142,6 +146,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   @Input() minimizeIcon: string = 'pi pi-window-minimize';
 
   @Input() maximizeIcon: string = 'pi pi-window-maximize';
+
   @Input() config: any;
 
   @ContentChild(Header)

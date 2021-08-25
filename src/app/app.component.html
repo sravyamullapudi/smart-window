@@ -5,7 +5,7 @@
 </div>
 <div class="container">
   <ng-container *ngFor="let dialog of dialogsList;let i = index">
-    <custom-window [config]="config" [hidden]="dialog.isHide" [header]="dialog.header" [maximizable]="true" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" [HeaderStyle]="{'background-color': '#d0e5f1'}" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)">
+    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [maximizable]="true" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" [HeaderStyle]="{'background-color': '#d0e5f1'}" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna
         aliqua.

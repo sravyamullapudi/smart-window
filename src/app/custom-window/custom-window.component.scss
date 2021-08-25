@@ -225,3 +225,21 @@
   top: 0px;
   right: 0px;
 }
+
+.p-dialog-tool-icon {
+  height: 2rem;
+  color: #6c757d;
+  border: 0 none;
+  background: transparent;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  border-radius: 8px;
+}
+.p-dialog-tool-icon:hover {
+  border-color: transparent;
+  background: #e9ecef;
+}
+.tools-container {
+  display: flex;
+}

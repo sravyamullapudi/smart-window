@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 interface DialogsData {
-  header: string;
+  headerConfig: object;
   isVisible: boolean;
   isHide: boolean;
 }
@@ -22,13 +22,33 @@ export class AppComponent {
   resizeOptions = {
     horizontal: true,
     corners: true,
-    both: false
+    both: true,
+    vertical: true
+  }
+
+  toolsConfig = [{
+    icon: 'pi pi-plus',
+    style: '',
+    iconCls: '',
+    buttonCls: '',
+    label: 'save',
+    alignment: 'left'
+  }];
+
+  headerConfig = {
+
   }
 
   showDialog() {
     this.dialogCount++;
     this.dialogsList.push({
-      header: `Header ${this.dialogCount}`,
+      headerConfig: {
+        title: `Header ${this.dialogCount}`,
+        icon: '',
+        titleClass: '',
+        iconClass: '',
+        alignment: 'center'
+      },
       isVisible: true,
       isHide: false
     });

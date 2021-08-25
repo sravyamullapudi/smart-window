@@ -8,22 +8,31 @@
                 'p-dialog-bottom-left': position === 'bottomleft' || position === 'bottom-left',
                 'p-dialog-bottom-right': position === 'bottomright' || position === 'bottom-right'}" (click)="moveOnTop()">
     <div #container [ngClass]="{'p-dialog p-component':true, 'p-dialog-rtl':rtl,'p-dialog-draggable':draggable,'p-dialog-maximized': maximized, 'minimizeView': isMinimized}" [ngStyle]="style" [class]="styleClass" *ngIf="visible" pFocusTrap [@animation]="{value: 'visible', params: {transform: transformOptions, transition: transitionOptions}}" (@animation.start)="onAnimationStart($event)" (@animation.done)="onAnimationEnd($event)" role="dialog" [attr.aria-labelledby]="id + '-label'">
-        <div #titlebar class="p-dialog-header" (mousedown)="initDrag($event)" *ngIf="showHeader" [ngStyle]="HeaderStyle" [class]="HeaderStyleClass">
-            <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="header">{{header}}</span>
-            <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="headerFacet">
-                <ng-content select="p-header"></ng-content>
-            </span>
-            <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-            <div class="p-dialog-header-icons">
-                <button (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
-                    <span class="pi pi-minus"></span>
-                </button>
-                <button *ngIf="maximizable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-maximize p-link':true}" (click)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>
-                    <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
-                </button>
-                <button *ngIf="closable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-close p-link':true}" (click)="close($event);isMinimized = false" (keydown.enter)="close($event)" tabindex="-1" pRipple>
-                    <span class="p-dialog-header-close-icon" [ngClass]="closeIcon"></span>
-                </button>
+        <div #titlebar class="p-dialog-header" (mousedown)="initDrag($event)" *ngIf="showHeader">
+            <div class="title-container" [class]="headerConfig.titleClass">
+                <span *ngIf="headerConfig" [class]="headerConfig.icon"></span>
+                <span [attr.id]="id + '-label'" class="p-dialog-title" *ngIf="headerConfig">{{headerConfig.title}}</span>
+            </div>
+            <div class="tools-container">
+                <ng-container *ngIf="toolsConfig && toolsConfig.length >0">
+                    <div *ngFor="let item of toolsConfig">
+                        <button [class]="item.buttonCls" [ngStyle]="item.style" class="p-dialog-tool-icon">
+                            <span class="label">{{item.label}}</span>
+                            <span [class]="item.icon"></span>
+                        </button>
+                    </div>
+                </ng-container>
+                <div class="p-dialog-header-icons">
+                    <button (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
+                        <span class="pi pi-minus"></span>
+                    </button>
+                    <button *ngIf="maximizable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-maximize p-link':true}" (click)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                        <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
+                    </button>
+                    <button *ngIf="closable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-close p-link':true}" (click)="close($event);isMinimized = false" (keydown.enter)="close($event)" tabindex="-1" pRipple>
+                        <span class="p-dialog-header-close-icon" [ngClass]="closeIcon"></span>
+                    </button>
+                </div>
             </div>
         </div>
         <div [hidden]="isMinimized && !maximized" #content [ngClass]="'p-dialog-content'" [ngStyle]="contentStyle" [class]="contentStyleClass">
