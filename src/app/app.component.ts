@@ -43,6 +43,7 @@ export class AppComponent {
         icon: '',
         titleClass: '',
         iconClass: '',
+        style: '',
         alignment: 'center'
       },
       isVisible: true,
