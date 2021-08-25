@@ -15,7 +15,7 @@
 <div *ngIf="showList" class="taskbars-morelist">
     <div [ngClass]="{'closed': item?.isHide}" class="task-menu" (click)="toggle(i, 'hiddenList')"
         *ngFor="let item of hiddenList;let i = index">
-        <p>{{item.header}}</p>
+        <p>{{item?.headerConfig?.title}}</p>
     </div>
     <div (click)="showList = false" class="overlay"></div>
 </div>
