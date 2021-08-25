@@ -1,8 +1,8 @@
 <div class="taskbar-container">
     <div>
         <ul>
-            <li [ngClass]="{'closed': item?.isHide}" (click)="toggle(item, i)"
-                *ngFor="let item of taskMenu;let i = index">
+            <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide}" (click)="toggle(i)"
+                *ngFor="let item of displayList;let i = index">
                 {{item.header}}
             </li>
         </ul>
@@ -13,8 +13,8 @@
 </div>
 
 <div *ngIf="showList" class="taskbars-morelist">
-    <div [ngClass]="{'closed': item?.isHide}" class="task-menu" (click)="toggle(item, i)"
-        *ngFor="let item of taskMenu;let i = index">
+    <div [ngClass]="{'closed': item?.isHide}" class="task-menu" (click)="toggle(i, 'hiddenList')"
+        *ngFor="let item of hiddenList;let i = index">
         <p>{{item.header}}</p>
     </div>
     <div (click)="showList = false" class="overlay"></div>

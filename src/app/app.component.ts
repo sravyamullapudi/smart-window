@@ -17,7 +17,7 @@ export class AppComponent {
   dialogsList: DialogsData[] = [];
   dialogCount = 0;
   config = {
-    showTaskBar: false
+    showTaskBar: true
   }
   resizeOptions = {
     horizontal: true,
@@ -44,14 +44,18 @@ export class AppComponent {
 
   visibleToggleed(index: number) {
     this.dialogsList[index].isHide = !this.dialogsList[index].isHide;
+    if (this.config.showTaskBar && !this.dialogsList[index].isHide) {
+      const windowEle = <HTMLElement>document.querySelector(`div.container > custom-window:nth-child(${index + 1}) .p-component`);
+      windowEle && windowEle.click()
+    }
   }
 
   onMaximize(evnt: any, index: number) {
-    console.log(evnt);
+    console.log(evnt, index);
   }
 
   onMinimize(evnt: any, index: number) {
-    console.log(evnt);
+    console.log(evnt, index);
     if (this.config.showTaskBar) {
       this.visibleToggleed(index)
     }

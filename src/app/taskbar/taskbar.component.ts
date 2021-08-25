@@ -15,8 +15,9 @@ export class TaskbarComponent implements OnInit, OnChanges {
   @Output() visibleToggleed = new EventEmitter();
 
   isShowMore = false;
-
   showList = false;
+  displayList: any[] = [];
+  hiddenList: any[] = [];
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -29,19 +30,51 @@ export class TaskbarComponent implements OnInit, OnChanges {
 
   checkMoreButton() {
     this.cd.detectChanges();
+    this.displayList = [...this.taskMenu];
     setTimeout(() => {
       const taskbarContainer = document.querySelector('.taskbar-container ul');
       if (taskbarContainer && taskbarContainer.parentElement && taskbarContainer.clientWidth > taskbarContainer.parentElement.clientWidth) {
         this.isShowMore = true;
+        this.setHiddenList();
       } else {
         this.isShowMore = false;
+        this.hiddenList = [];
       }
     }, 1);
   }
 
-  toggle(item: any, index: number) {
+  setHiddenList() {
+    let index = this.displayList.length - 1;
+    let isStop = false;
+    let width = 0;
+    const taskbarContainer = document.querySelector('.taskbar-container ul');
+    if (taskbarContainer && taskbarContainer.parentElement) {
+      while (!isStop && index >= 0) {
+        const liTag = document.querySelector(`.taskbar-container ul li[data-id='${index}']`);
+        if (liTag) {
+          width += liTag.clientWidth;
+        }
+        const resizeWidth = taskbarContainer.clientWidth - width;
+        if (taskbarContainer.parentElement.clientWidth > resizeWidth) {
+          isStop = true;
+          console.log(index, this.displayList[index]);
+          this.hiddenList = this.taskMenu.slice(index);
+          this.displayList = this.taskMenu.slice(0, index);
+        }
+        index--;
+      }
+    }
+  }
+
+  toggle(index: number, from?: string) {
     this.showList = false;
-    this.visibleToggleed.emit(index);
+    if (from === 'hiddenList') {
+      this.visibleToggleed.emit(this.displayList.length + index);
+      console.log(this.displayList.length + index);
+    } else {
+      console.log(index);
+      this.visibleToggleed.emit(index);
+    }
   }
 
   showListBtn() {
