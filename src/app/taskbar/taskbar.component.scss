@@ -6,10 +6,12 @@
   width: 100%;
   left: 0;
   display: flex;
+  background-color: #fff;
   > div {
     flex: 1;
     overflow: hidden;
     display: flex;
+    height: 48px;
   }
   ul {
     list-style: none;
@@ -24,6 +26,9 @@
       cursor: pointer;
       border-bottom: 3px solid green;
       margin-right: 3px;
+      p {
+        font-size: 14px;
+      }
       &.closed {
         border-color: red;
       }

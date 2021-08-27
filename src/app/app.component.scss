@@ -10,3 +10,31 @@ p-button {
 //   height: calc(100% - 80px - 36px);
 //   position: relative;
 // }
+
+.actions-block {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  button {
+    width: 80px;
+    height: 80px;
+    padding: 12px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: transparent;
+    &:hover {
+      background-color: #efefef;
+    }
+    i {
+      margin-bottom: 6px;
+      font-size: 20px;
+    }
+  }
+}

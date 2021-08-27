@@ -4,6 +4,7 @@ interface DialogsData {
   headerConfig: object;
   isVisible: boolean;
   isHide: boolean;
+  componentType?: string;
 }
 
 @Component({
@@ -35,20 +36,50 @@ export class AppComponent {
     alignment: 'left'
   }];
 
-  showDialog() {
-    this.dialogCount++;
-    this.dialogsList.push({
-      headerConfig: {
-        title: `Header ${this.dialogCount}`,
-        icon: '',
-        titleClass: '',
-        iconClass: '',
-        style: '',
-        alignment: 'center'
-      },
-      isVisible: true,
-      isHide: false
-    });
+  showDialog(type?: string) {
+    if (type === 'table') {
+      this.dialogsList.push({
+        headerConfig: {
+          title: `Table Window`,
+          icon: '',
+          titleClass: '',
+          iconClass: '',
+          style: '',
+          alignment: 'left'
+        },
+        isVisible: true,
+        isHide: false,
+        componentType: 'tableLayout'
+      });
+    } else if (type === 'form') {
+      this.dialogsList.push({
+        headerConfig: {
+          title: `Form Layout`,
+          icon: '',
+          titleClass: '',
+          iconClass: '',
+          style: '',
+          alignment: 'left'
+        },
+        isVisible: true,
+        isHide: false,
+        componentType: 'formLayout'
+      });
+    } else {
+      this.dialogCount++;
+      this.dialogsList.push({
+        headerConfig: {
+          title: `Header ${this.dialogCount}`,
+          icon: '',
+          titleClass: '',
+          iconClass: '',
+          style: '',
+          alignment: 'center'
+        },
+        isVisible: true,
+        isHide: false
+      });
+    }
   }
 
   closeDialog(data: any) {

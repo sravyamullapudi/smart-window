@@ -1,24 +1,42 @@
 <div>
-  <p-button (click)="showDialog()" label="Add"></p-button>
-  <!-- <p-button (click)="showDialog1()" label="Add"></p-button>
-  <p-button (click)="showDialog2()" label="Add"></p-button> -->
+  <div class="actions-block">
+    <button (click)="showDialog('table')">
+      <i class="pi pi-table"></i>
+      Table
+    </button>
+    <button (click)="showDialog('form')">
+      <i class="pi pi-id-card"></i>
+      Form
+    </button>
+    <button (click)="showDialog()">
+      <i class="pi pi-plus"></i>
+      Add
+    </button>
+  </div>
 </div>
 <div class="container">
   <ng-container *ngFor="let dialog of dialogsList;let i = index">
-    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [maximizable]="true" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna
-        aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="closeDialog(dialog)" label="Yes" styleClass="p-button-text"></p-button>
-        <p-button icon="pi pi-times" (click)="closeDialog(dialog)" label="No"></p-button>
-      </ng-template>
+    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [maximizable]="true"
+      [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions"
+      (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)"
+      (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig">
+      <app-table *ngIf="dialog?.componentType === 'tableLayout'"></app-table>
+      <app-user-form *ngIf="dialog?.componentType === 'formLayout'"></app-user-form>
+      <div *ngIf="!dialog?.componentType">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna
+          aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur
+          sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
     </custom-window>
   </ng-container>
 </div>
 
-<app-taskbar *ngIf="config?.showTaskBar && dialogsList.length" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)" [taskMenu]="dialogsList"></app-taskbar>
+<app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)"
+  [taskMenu]="dialogsList"></app-taskbar>

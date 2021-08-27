@@ -3,7 +3,9 @@
         <ul>
             <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide}" (click)="toggle(i)"
                 *ngFor="let item of displayList;let i = index">
-                {{item?.headerConfig?.title}}
+                <p>
+                    {{item?.headerConfig?.title}}
+                </p>
             </li>
         </ul>
     </div>

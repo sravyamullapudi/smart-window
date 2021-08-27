@@ -1,0 +1,21 @@
+input {
+    border: 1px solid #000;
+    height: 34px;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 16px;
+}
+textarea {
+    max-width: 400px;
+    border: 1px solid #000;
+    resize: none;
+}
+.p-field {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    label {
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+}
