@@ -5,6 +5,7 @@ interface DialogsData {
   isVisible: boolean;
   isHide: boolean;
   componentType?: string;
+  isFocused?: boolean;
 }
 
 @Component({
@@ -95,6 +96,8 @@ export class AppComponent {
     if (this.config.showTaskBar && !this.dialogsList[index].isHide) {
       const windowEle = <HTMLElement>document.querySelector(`div.container > custom-window:nth-child(${index + 1}) .p-component`);
       windowEle && windowEle.click()
+    } else {
+      this.dialogsList[index].isFocused = false;
     }
   }
 
@@ -107,6 +110,13 @@ export class AppComponent {
     if (this.config.showTaskBar) {
       this.visibleToggleed(index)
     }
+  }
+
+  onActive(event: any, index: number) {
+    this.dialogsList.forEach(item => {
+      item.isFocused = false;
+    });
+    this.dialogsList[index].isFocused = true;
   }
 
 

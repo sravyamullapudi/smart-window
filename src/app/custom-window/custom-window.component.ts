@@ -174,6 +174,8 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   @Output() onMinimize: EventEmitter<any> = new EventEmitter();
 
+  @Output() onWindowActive: EventEmitter<any> = new EventEmitter();
+
   headerTemplate!: TemplateRef<any>;
 
   contentTemplate!: TemplateRef<any>;
@@ -398,7 +400,8 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
     elements.forEach(item => {
       item.classList.remove('isTop');
     });
-    this.container.classList.add('isTop')
+    this.container.classList.add('isTop');
+    this.onWindowActive.emit(true);
   }
 
   createStyle() {
