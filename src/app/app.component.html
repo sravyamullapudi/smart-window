@@ -19,7 +19,7 @@
     <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [maximizable]="true"
       [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions"
       (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)"
-      (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig">
+      (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
       <app-table *ngIf="dialog?.componentType === 'tableLayout'"></app-table>
       <app-user-form *ngIf="dialog?.componentType === 'formLayout'"></app-user-form>
       <div *ngIf="!dialog?.componentType">

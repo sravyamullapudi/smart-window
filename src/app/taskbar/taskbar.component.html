@@ -1,7 +1,7 @@
 <div class="taskbar-container">
     <div>
         <ul>
-            <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide}" (click)="toggle(i)"
+            <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide, 'active': item?.isFocused && !item?.isHide}" (click)="toggle(i)"
                 *ngFor="let item of displayList;let i = index">
                 <p>
                     {{item?.headerConfig?.title}}

@@ -28,9 +28,13 @@
       margin-right: 3px;
       p {
         font-size: 14px;
+        margin: 0;
       }
       &.closed {
         border-color: red;
+      }
+      &.active {
+        background-color: #f2f2f2;
       }
       &:hover {
         background-color: #f2f2f2;
