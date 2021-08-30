@@ -33,7 +33,10 @@ export class AppComponent {
     iconCls: '',
     buttonCls: '',
     label: 'save',
-    alignment: 'left'
+    alignment: 'left',
+    handler: (evt: any) => {
+      this.save();
+    }
   }];
 
   showDialog(type?: string) {
@@ -109,5 +112,7 @@ export class AppComponent {
     }
   }
 
-
+  save() {
+    console.log('save');
+  }
 }
