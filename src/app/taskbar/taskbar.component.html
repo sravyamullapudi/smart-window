@@ -1,5 +1,5 @@
 <div class="taskbar-container">
-    <div>
+    <div class="taskbar-list-container">
         <ul>
             <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide, 'active': item?.isFocused && !item?.isHide}" (click)="toggle(i)"
                 *ngFor="let item of displayList;let i = index">
@@ -12,6 +12,9 @@
     <button (click)="showListBtn()" class="more-btn" *ngIf="isShowMore">
         <span class="pi pi-chevron-up"></span>
     </button>
+    <div class="time-box">
+        <p>{{currentTime}}</p>
+    </div>
 </div>
 
 <div *ngIf="showList" class="taskbars-morelist">

@@ -18,10 +18,12 @@ export class TaskbarComponent implements OnInit, OnChanges {
   showList = false;
   displayList: any[] = [];
   hiddenList: any[] = [];
+  currentTime: any;
 
   constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.setTime();
   }
 
   ngOnChanges() {
@@ -79,6 +81,24 @@ export class TaskbarComponent implements OnInit, OnChanges {
 
   showListBtn() {
     this.showList = !this.showList;
+  }
+
+  setTime() {
+    const calTime = () => {
+      const date = new Date();
+      const hours = date.getHours();
+      let hours12Format = '';
+      if (hours >= 12) {
+        hours12Format = (hours === 12 ? hours : (hours - 12)) + `:${date.getMinutes()} PM`;
+      } else {
+        hours12Format = hours + `:${date.getMinutes()} AM`;
+      }
+      this.currentTime = hours12Format;
+    };
+    calTime();
+    setInterval(() => {
+      calTime();
+    }, 1000 * 60)
   }
 
 }
