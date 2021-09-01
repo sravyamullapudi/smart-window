@@ -212,7 +212,7 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
 
   preventVisibleChangePropagation!: boolean;
 
-  maximized!: boolean;
+  maximized: boolean = false;
 
   preMaximizeContentHeight!: number;
 
