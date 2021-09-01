@@ -15,7 +15,7 @@
             </div>
             <div class="tools-container">
                 <ng-container *ngIf="toolsConfig && toolsConfig.length >0">
-                    <div *ngFor="let item of toolsConfig">
+                    <div *ngFor="let item of toolsConfig" [ngClass]="item?.alignment == 'left' ? 'left-order-cls' : 'right-order-cls'">
                         <button [class]="item.buttonCls" (click)="item?.handler()" [ngStyle]="item.style" class="p-dialog-tool-icon">
                             <span class="label">{{item.label}}</span>
                             <span [class]="item.icon"></span>
