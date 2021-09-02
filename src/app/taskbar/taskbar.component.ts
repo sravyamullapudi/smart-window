@@ -13,12 +13,58 @@ export class TaskbarComponent implements OnInit, OnChanges {
   @Input() menuCout: any;
 
   @Output() visibleToggleed = new EventEmitter();
+  @Output() showDialog = new EventEmitter();
 
   isShowMore = false;
   showList = false;
   displayList: any[] = [];
   hiddenList: any[] = [];
-  currentTime: any;
+  cureentDate = new Date();
+  isShowStartMenu = false;
+
+  startMenu = [
+    {
+      label: 'Table Window',
+      icon: 'pi-table',
+      windowType: 'tableWindow'
+    },
+    {
+      label: 'Form Window',
+      icon: 'pi-id-card',
+      windowType: 'formWindow'
+    },
+    {
+      label: 'Accordion Window',
+      icon: 'pi-desktop',
+      windowType: 'accordionWindow'
+    },
+    {
+      label: 'Tab Window',
+      icon: 'pi-id-card',
+      windowType: 'tabWindow'
+    },
+    {
+      label: 'Window 1',
+      icon: 'pi-desktop',
+      windowType: 'sampleWindow1'
+    },
+    {
+      label: 'Window 2',
+      icon: 'pi-desktop',
+      windowType: 'sampleWindow2'
+    },
+    {
+      label: 'Window 3',
+      icon: 'pi-desktop',
+      windowType: 'sampleWindow3'
+    },
+    {
+      label: 'Window 4',
+      icon: 'pi-desktop',
+      windowType: 'sampleWindow4'
+    }
+  ];
+
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -84,21 +130,16 @@ export class TaskbarComponent implements OnInit, OnChanges {
   }
 
   setTime() {
-    const calTime = () => {
-      const date = new Date();
-      const hours = date.getHours();
-      let hours12Format = '';
-      if (hours >= 12) {
-        hours12Format = (hours === 12 ? hours : (hours - 12)) + `:${date.getMinutes()} PM`;
-      } else {
-        hours12Format = hours + `:${date.getMinutes()} AM`;
-      }
-      this.currentTime = hours12Format;
-    };
-    calTime();
     setInterval(() => {
-      calTime();
-    }, 1000 * 60)
+      this.cureentDate = new Date();
+    }, 1000 * 10)
   }
 
+  openWindow(data: any) {
+    this.showDialog.emit(data);
+    this.isShowStartMenu = false;
+  }
+  toggleStartMenu() {
+    this.isShowStartMenu = !this.isShowStartMenu;
+  }
 }

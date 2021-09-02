@@ -12,6 +12,10 @@ import { TableComponent } from './table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserFormComponent } from './user-form/user-form.component';
 import { MatInputModule } from '@angular/material/input';
+import { AccordionComponent } from './accordion/accordion.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TabsComponent } from './tabs/tabs.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -21,7 +25,9 @@ import { MatInputModule } from '@angular/material/input';
     CustomWindowComponent,
     TaskbarComponent,
     TableComponent,
-    UserFormComponent
+    UserFormComponent,
+    AccordionComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,9 @@ import { MatInputModule } from '@angular/material/input';
     DialogModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

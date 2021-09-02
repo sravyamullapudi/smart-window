@@ -1,17 +1,17 @@
 <div>
   <div class="actions-block">
-    <button (click)="showDialog('table')">
-      <i class="pi pi-table"></i>
-      Table
+    <button *ngFor="let item of startMenu" (click)="selectedWindow(item)">
+      <i class="pi {{item?.icon}}"></i>
+      {{item?.label}}
     </button>
-    <button (click)="showDialog('form')">
+    <!-- <button (click)="showDialog('form')">
       <i class="pi pi-id-card"></i>
       Form
-    </button>
-    <button (click)="showDialog()">
+    </button> -->
+    <!-- <button (click)="showDialog()">
       <i class="pi pi-plus"></i>
       Add
-    </button>
+    </button> -->
   </div>
 </div>
 <div class="container">
@@ -20,18 +20,15 @@
       [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions"
       (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)"
       (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
-      <app-table *ngIf="dialog?.componentType === 'tableLayout'"></app-table>
-      <app-user-form *ngIf="dialog?.componentType === 'formLayout'"></app-user-form>
-      <div *ngIf="!dialog?.componentType">
+      <app-table *ngIf="dialog?.componentType === 'tableWindow'"></app-table>
+      <app-user-form *ngIf="dialog?.componentType === 'formWindow'"></app-user-form>
+      <app-accordion *ngIf="dialog?.componentType === 'accordionWindow'"></app-accordion>
+      <app-tabs *ngIf="dialog?.componentType === 'tabWindow'"></app-tabs>
+      <div
+        *ngIf="dialog?.componentType === 'sampleWindow1' || dialog?.componentType === 'sampleWindow2' || dialog?.componentType === 'sampleWindow3' || dialog?.componentType === 'sampleWindow4'"
+        class="sample-window">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna
-          aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur
-          sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Something useful would be in here.
         </p>
       </div>
     </custom-window>
@@ -39,4 +36,4 @@
 </div>
 
 <app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)"
-  [taskMenu]="dialogsList"></app-taskbar>
+  [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></app-taskbar>

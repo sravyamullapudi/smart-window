@@ -29,12 +29,18 @@ p-button {
     align-items: center;
     border-radius: 8px;
     background-color: transparent;
+    color: rgba($color: #fff, $alpha: 0.8);
     &:hover {
-      background-color: #efefef;
+      background-color: rgba($color: #074899, $alpha: 0.2);
     }
     i {
       margin-bottom: 6px;
       font-size: 20px;
+      color: #fff;
     }
   }
+}
+
+.sample-window {
+  height: 200px;
 }

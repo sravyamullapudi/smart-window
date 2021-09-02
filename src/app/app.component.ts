@@ -40,6 +40,29 @@ export class AppComponent {
     }
   }];
 
+  startMenu = [
+    {
+      label: 'Table Window',
+      icon: 'pi-table',
+      windowType: 'tableWindow'
+    },
+    {
+      label: 'Form Window',
+      icon: 'pi-id-card',
+      windowType: 'formWindow'
+    },
+    {
+      label: 'Accordion Window',
+      icon: 'pi-desktop',
+      windowType: 'accordionWindow'
+    },
+    {
+      label: 'Tab Window',
+      icon: 'pi-id-card',
+      windowType: 'tabWindow'
+    },
+  ];
+
   showDialog(type?: string) {
     if (type === 'table') {
       this.dialogsList.push({
@@ -86,6 +109,27 @@ export class AppComponent {
     }
   }
 
+  selectedWindow(data: any) {
+    const index = this.dialogsList.findIndex(item => item.componentType === data.windowType);
+    if (index === -1) {
+      this.dialogsList.push({
+        headerConfig: {
+          title: data.label,
+          icon: data.icon,
+          titleClass: '',
+          iconClass: '',
+          style: '',
+          alignment: 'left'
+        },
+        isVisible: true,
+        isHide: false,
+        componentType: data.windowType
+      });
+    } else {
+      this.visibleToggleed(index, true);
+    }
+  }
+
   closeDialog(data: any) {
     console.log(data);
   }
@@ -94,8 +138,12 @@ export class AppComponent {
     this.dialogsList.splice(index, 1);
   }
 
-  visibleToggleed(index: number) {
-    this.dialogsList[index].isHide = !this.dialogsList[index].isHide;
+  visibleToggleed(index: number, showWindow?: boolean) {
+    if (showWindow) {
+      this.dialogsList[index].isHide = false;
+    } else {
+      this.dialogsList[index].isHide = !this.dialogsList[index].isHide;
+    }
     if (this.config.showTaskBar && !this.dialogsList[index].isHide) {
       const windowEle = <HTMLElement>document.querySelector(`div.container > custom-window:nth-child(${index + 1}) .p-component`);
       windowEle && windowEle.click()
