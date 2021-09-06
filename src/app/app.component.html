@@ -16,17 +16,12 @@
 </div>
 <div class="container">
   <ng-container *ngFor="let dialog of dialogsList;let i = index">
-    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [maximizable]="true"
-      [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions"
-      (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)"
-      (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
+    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
       <app-table *ngIf="dialog?.componentType === 'tableWindow'"></app-table>
       <app-user-form *ngIf="dialog?.componentType === 'formWindow'"></app-user-form>
       <app-accordion *ngIf="dialog?.componentType === 'accordionWindow'"></app-accordion>
       <app-tabs *ngIf="dialog?.componentType === 'tabWindow'"></app-tabs>
-      <div
-        *ngIf="dialog?.componentType === 'sampleWindow1' || dialog?.componentType === 'sampleWindow2' || dialog?.componentType === 'sampleWindow3' || dialog?.componentType === 'sampleWindow4'"
-        class="sample-window">
+      <div *ngIf="dialog?.componentType === 'sampleWindow1' || dialog?.componentType === 'sampleWindow2' || dialog?.componentType === 'sampleWindow3' || dialog?.componentType === 'sampleWindow4'" class="sample-window">
         <p>
           Something useful would be in here.
         </p>
@@ -35,5 +30,4 @@
   </ng-container>
 </div>
 
-<app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)"
-  [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></app-taskbar>
+<app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)" [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></app-taskbar>

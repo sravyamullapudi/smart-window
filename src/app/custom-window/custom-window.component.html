@@ -23,7 +23,7 @@
                     </div>
                 </ng-container>
                 <div class="p-dialog-header-icons">
-                    <button (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
+                    <button *ngIf="minimizable" (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
                         <span class="pi pi-minus"></span>
                     </button>
                     <button *ngIf="maximizable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-maximize p-link':true}" (click)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>

@@ -124,7 +124,9 @@ export class CustomWindowComponent implements AfterContentInit, OnInit, OnDestro
   @Input() focusOnShow: boolean = true;
 
   @Input()
-  maximizable!: boolean;
+  maximizable: boolean = true;
+
+  @Input() minimizable: boolean = true;
 
   @Input() keepInViewport: boolean = true;
 
