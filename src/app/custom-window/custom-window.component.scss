@@ -1,3 +1,5 @@
+$primary--color: #3892d3;
+
 .p-dialog-mask {
   position: fixed;
   top: 0;
@@ -16,23 +18,6 @@
   pointer-events: auto;
 }
 
-.p-dialog {
-  display: flex;
-  flex-direction: column;
-  pointer-events: auto;
-  max-height: 90%;
-  transform: scale(1);
-  position: relative;
-  // &.minimizeView {
-  //   height: 80px !important;
-  //   top: auto !important;
-  //   bottom: 0 !important;
-  //   left: 0 !important;
-  //   width: 300px !important;
-  //   position: fixed;
-  // }
-}
-
 .p-dialog-header {
   display: flex;
   align-items: center;
@@ -42,11 +27,22 @@
 }
 .p-dialog {
   // box-shadow: 0px 0px 8px rgb(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  max-height: 90%;
+  transform: scale(1);
+  position: relative;
+  border: 5px solid $primary--color;
+  border-top: none;
+  border-radius: 5px;
   .p-dialog-header {
     padding: 8px;
-    background-color: #32ad55;
+    background-color: $primary--color;
+    border: none;
+    border-radius: 0;
     .p-dialog-title {
-      font-size: 16px;
+      font-size: 13px;
       color: #fff;
     }
   }
@@ -156,7 +152,7 @@
   cursor: ns-resize;
   position: absolute;
   height: 5px;
-  bottom: 0px;
+  bottom: -5px;
   left: 0;
   right: 0;
 }
@@ -174,7 +170,7 @@
   position: absolute;
   top: 0px;
   bottom: 0;
-  right: 0px;
+  right: -5px;
   width: 6px;
   cursor: e-resize;
 }
@@ -183,7 +179,7 @@
   position: absolute;
   top: 0px;
   bottom: 0;
-  left: 0px;
+  left: -5px;
   width: 6px;
   cursor: e-resize;
 }
@@ -195,8 +191,8 @@
   cursor: se-resize;
   width: 12px;
   height: 12px;
-  right: 0px;
-  bottom: 0px;
+  right: -5px;
+  bottom: -5px;
 }
 
 .p-resizable-handle-bottom-left {
@@ -206,8 +202,8 @@
   cursor: nesw-resize;
   width: 12px;
   height: 12px;
-  bottom: 0px;
-  left: 0px;
+  bottom: -5px;
+  left: -5px;
 }
 
 .p-resizable-handle-top-left {
@@ -218,7 +214,7 @@
   width: 12px;
   height: 12px;
   top: 0px;
-  left: 0px;
+  left: -5px;
 }
 
 .p-resizable-handle-top-right {
@@ -233,7 +229,7 @@
 }
 
 .p-dialog-tool-icon {
-  height: 2rem;
+  height: 18px;
   color: #6c757d;
   border: 0 none;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -242,6 +238,15 @@
   border-radius: 8px;
   padding: 0 10px;
   background: #e9ecef;
+  display: flex;
+  align-items: center;
+  line-height: inherit;
+  .pi {
+    font-size: 10px;
+  }
+  .label {
+    margin-right: 3px;
+  }
 }
 .tools-container {
   display: flex;
@@ -263,10 +268,10 @@
       color: #495057;
       border-color: transparent;
       background: #e9ecef;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 18px;
+      height: 18px;
       .pi {
-        font-size: 12px;
+        font-size: 10px;
       }
     }
   }
@@ -275,4 +280,5 @@
 .header-title-icon {
   color: #fff;
   margin-right: 5px;
+  font-size: 13px;
 }
