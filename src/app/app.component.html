@@ -8,7 +8,7 @@
 </div>
 <div class="container">
   <ng-container *ngFor="let dialog of dialogsList;let i = index">
-    <custom-window [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
+    <lib-smart-window-lib [config]="config" [hidden]="dialog.isHide" [headerConfig]="dialog.headerConfig" [(visible)]="dialog.isVisible" [style]="{width: '50vw'}" [baseZIndex]="10000" [resizable]="resizeOptions" (visibleChange)="visibleChanged($event, i)" (onMaximize)="onMaximize($event, i)" (onMinimize)="onMinimize($event, i)" [toolsConfig]="toolsConfig" (onWindowActive)="onActive($event, i)">
       <app-table *ngIf="dialog?.componentType === 'tableWindow'"></app-table>
       <app-user-form *ngIf="dialog?.componentType === 'formWindow'"></app-user-form>
       <app-accordion *ngIf="dialog?.componentType === 'accordionWindow'"></app-accordion>
@@ -18,8 +18,9 @@
           Something useful would be in here.
         </p>
       </div>
-    </custom-window>
+    </lib-smart-window-lib>
   </ng-container>
 </div>
 
-<app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)" [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></app-taskbar>
+<!-- <app-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)" [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></app-taskbar> -->
+<lib-taskbar *ngIf="config?.showTaskBar" [menuCout]="dialogsList.length" (visibleToggleed)="visibleToggleed($event)" [taskMenu]="dialogsList" (showDialog)="selectedWindow($event)"></lib-taskbar>
