@@ -1,0 +1,172 @@
+.taskbar-container {
+  width: 100%;
+  border-top: 1px solid #000;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  display: flex;
+  background-color: #fff;
+  .taskbar-list-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    height: 36px;
+    ul {
+      list-style: none;
+      display: flex;
+      white-space: nowrap;
+      li {
+        padding: 0 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        cursor: pointer;
+        border-bottom: 3px solid green;
+        margin-right: 3px;
+        p {
+          font-size: 14px;
+          margin: 0;
+        }
+        &.closed {
+          border-color: red;
+        }
+        &.active {
+          background-color: #f2f2f2;
+        }
+        &:hover {
+          background-color: #f2f2f2;
+        }
+      }
+    }
+  }
+}
+
+.more-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  width: 30px;
+}
+
+.taskbars-morelist {
+  position: absolute;
+  background-color: #fff;
+  width: 180px;
+  bottom: 48px;
+  right: 4px;
+  z-index: 99999;
+  box-shadow: 0px 0px 6px rgba($color: #000000, $alpha: 0.6);
+  max-height: 360px;
+  overflow-y: auto;
+  .task-menu {
+    height: 38px;
+    width: 100%;
+    cursor: pointer;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid green;
+    margin-bottom: 3px;
+    &.closed {
+      border-color: red;
+    }
+    &:hover {
+      background-color: #f2f2f2;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+}
+
+.time-box {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #f2f2f2;
+  p {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.start-block {
+  padding: 3px 8px;
+  position: relative;
+  button {
+    height: 100%;
+    padding: 0 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: #f2f2f2;
+    }
+    i {
+      margin-left: 3px;
+    }
+  }
+}
+
+.start--menu {
+  position: absolute;
+  bottom: 100%;
+  left: 8px;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  z-index: 999999;
+  .menu-header {
+    padding: 4px 8px;
+    background-color: #32ad55;
+    display: flex;
+    align-items: center;
+    i {
+      color: #fff;
+      margin-right: 4px;
+    }
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+    }
+  }
+  .menu-body {
+    padding-bottom: 16px;
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: 14px;
+        &:hover {
+          background-color: #f2f2f2;
+        }
+        i {
+          margin-right: 10px;
+        }
+      }
+    } 
+  }
+}

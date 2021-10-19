@@ -16,6 +16,7 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TabsComponent } from './tabs/tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SmartWindowLibModule } from 'smart-window-lib';
 
 
 
@@ -38,7 +39,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTableModule,
     MatInputModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    SmartWindowLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]
