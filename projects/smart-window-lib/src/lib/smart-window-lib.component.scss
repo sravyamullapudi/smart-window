@@ -59,6 +59,9 @@ $primary--color: #3892d3;
 .p-dialog .p-dialog-header-icons {
   display: flex;
   align-items: center;
+  p-button {
+    margin: 0 4px;
+  }
 }
 
 .p-dialog .p-dialog-header-icon {

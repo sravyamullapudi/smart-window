@@ -16,22 +16,20 @@
             <div class="tools-container">
                 <ng-container *ngIf="toolsConfig && toolsConfig.length >0">
                     <div *ngFor="let item of toolsConfig" [ngClass]="item?.alignment == 'left' ? 'left-order-cls' : 'right-order-cls'">
-                        <button [class]="item.buttonCls" (click)="item?.handler()" [ngStyle]="item.style" class="p-dialog-tool-icon">
-                            <span class="label">{{item.label}}</span>
-                            <span [class]="item.icon"></span>
-                        </button>
+                        <p-button styleClass="p-dialog-tool-icon {{item.buttonCls}}" iconPos="right" label="{{item.label}}" icon="{{item.icon}}" (onClick)="item?.handler()" [ngStyle]="item.style">
+                            <!-- <span class="label">{{item.label}}</span>
+                            <span [class]="item.icon"></span> -->
+                        </p-button>
                     </div>
                 </ng-container>
-                <div class="p-dialog-header-icons">
-                    <button *ngIf="minimizable" (click)="minimizeWindow($event)" [ngClass]="{'p-dialog-header-icon p-dialog-header-minus p-link':true}">
-                        <span class="pi pi-minus"></span>
-                    </button>
-                    <button *ngIf="maximizable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-maximize p-link':true}" (click)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>
-                        <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
-                    </button>
-                    <button *ngIf="closable" type="button" [ngClass]="{'p-dialog-header-icon p-dialog-header-close p-link':true}" (click)="close($event);isMinimized = false" (keydown.enter)="close($event)" tabindex="-1" pRipple>
-                        <span class="p-dialog-header-close-icon" [ngClass]="closeIcon"></span>
-                    </button>
+                <div class="p-dialog-header-icons">    
+                    <p-button (onClick)="minimizeWindow($event)" icon="pi pi-minus" styleClass="p-dialog-header-icon p-dialog-header-minus p-link"></p-button>
+                    <p-button *ngIf="maximizable" type="button" icon="p-dialog-header-maximize-icon {{maximized ? minimizeIcon : maximizeIcon}}" styleClass="p-dialog-header-icon p-dialog-header-maximize p-link" (onClick)="maximize();isMinimized = false" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                        <!-- <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span> -->
+                    </p-button>
+                    <p-button *ngIf="closable" type="button" icon="p-dialog-header-close-icon {{closeIcon}}" styleClass="p-dialog-header-icon p-dialog-header-close p-link" (onClick)="close($event);isMinimized = false" (keydown.enter)="close($event)" tabindex="-1" pRipple>
+                        <!-- <span class="p-dialog-header-close-icon" [ngClass]="closeIcon"></span> -->
+                    </p-button>
                 </div>
             </div>
         </div>

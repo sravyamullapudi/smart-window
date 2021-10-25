@@ -1,13 +1,14 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'lib-taskbar',
   templateUrl: './taskbar.component.html',
-  styleUrls: ['./taskbar.component.scss']
+  styleUrls: ['./taskbar.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class TaskbarLibComponent implements OnInit, OnChanges {
-
+  @ViewChild('taskListContainer') taskListContainer!: ElementRef;
   @Input() taskMenu: any;
 
   @Input() menuCout: any;
@@ -80,7 +81,8 @@ export class TaskbarLibComponent implements OnInit, OnChanges {
     this.cd.detectChanges();
     this.displayList = [...this.taskMenu];
     setTimeout(() => {
-      const taskbarContainer = document.querySelector('.taskbar-container ul');
+      // const taskbarContainer = document.querySelector('.taskbar-container ul');
+      const taskbarContainer = this.taskListContainer.nativeElement;
       if (taskbarContainer && taskbarContainer.parentElement && taskbarContainer.clientWidth > taskbarContainer.parentElement.clientWidth) {
         this.isShowMore = true;
         this.setHiddenList();
@@ -95,17 +97,16 @@ export class TaskbarLibComponent implements OnInit, OnChanges {
     let index = this.displayList.length - 1;
     let isStop = false;
     let width = 0;
-    const taskbarContainer = document.querySelector('.taskbar-container ul');
+    const taskbarContainer = this.taskListContainer.nativeElement;
     if (taskbarContainer && taskbarContainer.parentElement) {
       while (!isStop && index >= 0) {
-        const liTag = document.querySelector(`.taskbar-container ul li[data-id='${index}']`);
+        const liTag = taskbarContainer.querySelector(`li[data-id='${index}']`);
         if (liTag) {
           width += liTag.clientWidth;
         }
         const resizeWidth = taskbarContainer.clientWidth - width;
         if (taskbarContainer.parentElement.clientWidth > resizeWidth) {
           isStop = true;
-          console.log(index, this.displayList[index]);
           this.hiddenList = this.taskMenu.slice(index);
           this.displayList = this.taskMenu.slice(0, index);
         }

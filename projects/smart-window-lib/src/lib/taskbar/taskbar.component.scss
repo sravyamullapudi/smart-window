@@ -49,6 +49,7 @@
   cursor: pointer;
   background-color: #f2f2f2;
   width: 30px;
+  color: #000;
 }
 
 .taskbars-morelist {
@@ -106,7 +107,7 @@
 .start-block {
   padding: 3px 8px;
   position: relative;
-  button {
+  .start-btn {
     height: 100%;
     padding: 0 10px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -116,8 +117,10 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
+    color: #000;
     &:hover {
-      background-color: #f2f2f2;
+      // color: #000;
+      // background-color: #f2f2f2;
     }
     i {
       margin-left: 3px;

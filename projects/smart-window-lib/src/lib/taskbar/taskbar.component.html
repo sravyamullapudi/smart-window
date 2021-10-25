@@ -1,9 +1,9 @@
 <div class="taskbar-container">
     <div class="start-block">
-        <button (click)="toggleStartMenu()">
-            Start
-            <i class="pi pi-angle-down"></i>
-        </button>
+        <p-button styleClass="start-btn" (onClick)="toggleStartMenu()" label="Start" iconPos="right" icon="pi pi-angle-down">
+            <!-- Start -->
+            <!-- <i class="pi pi-angle-down"></i> -->
+        </p-button>
         <div *ngIf="isShowStartMenu" class="start--menu">
             <div class="menu-header">
                 <i class="pi pi-user"></i>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="taskbar-list-container">
-        <ul>
+        <ul #taskListContainer>
             <li [attr.data-id]="i" [ngClass]="{'closed': item?.isHide, 'active': item?.isFocused && !item?.isHide}"
                 (click)="toggle(i)" *ngFor="let item of displayList;let i = index">
                 <p>
@@ -30,9 +30,10 @@
             </li>
         </ul>
     </div>
-    <button (click)="showListBtn()" class="more-btn" *ngIf="isShowMore">
-        <span class="pi pi-chevron-up"></span>
-    </button>
+    <!-- <p-button (onClick)="showListBtn()" label="Click" icon="pi pi-check" iconPos="left"></p-button> -->
+    <p-button (onClick)="showListBtn()" icon="pi pi-chevron-up" iconPos="right" styleClass="more-btn" *ngIf="isShowMore">
+        <!-- <span class="pi pi-chevron-up"></span> -->
+    </p-button>
     <div class="time-box">
         <p>{{cureentDate | date: 'h:mm a'}}</p>
     </div>

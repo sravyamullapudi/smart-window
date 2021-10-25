@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { TabsComponent } from './tabs/tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SmartWindowLibModule } from 'smart-window-lib';
+// import { SmartWindowLibModule } from '../../projects/smart-window-lib/src/lib/smart-window-lib.module';
 
 
 
